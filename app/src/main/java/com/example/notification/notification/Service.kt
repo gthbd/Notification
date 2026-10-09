@@ -11,9 +11,8 @@ import com.google.firebase.messaging.RemoteMessage
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     // Chạy khi thiết bị phát sinh Token mới
-    override fun onNewToken(token: String) {
-        super.onNewToken(token)
-        // Token này đại diện cho thiết bị, dùng để gửi thông báo tới đúng máy này
+    override fun onRegistered(installationId: String) {
+        FidRegistrar.register(installationId)
     }
 
     // Chạy khi có thông báo gửi tới lúc App ĐANG MỞ (Foreground)
