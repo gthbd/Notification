@@ -9,7 +9,7 @@ import kotlin.concurrent.thread
 
 object FidRegistrar {
     // Đổi thành IP máy tính chạy server (emulator dùng 10.0.2.2)
-    private const val SERVER_URL = "http://192.168.0.239"
+    private const val SERVER_URL = "http://192.168.1.17:8000"
     private const val TAG = "TokenRegistrar"
     private const val TIMEOUT_MILLIS = 5_000
 
@@ -26,7 +26,7 @@ object FidRegistrar {
                 connection.outputStream.use { output ->
                     output.write(JSONObject().put("fid", fid).toString().toByteArray())
                 }
-                Log.d(TAG, "Đăng ký token: HTTP ${connection.responseCode}")
+                Log.d(TAG, "FID $fid: HTTP ${connection.responseCode}")
             } catch (error: IOException) {
                 Log.w(TAG, "Không kết nối được server", error)
             } finally {
